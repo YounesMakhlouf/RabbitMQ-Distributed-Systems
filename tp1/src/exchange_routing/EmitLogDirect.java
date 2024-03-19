@@ -6,6 +6,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class EmitLogDirect {
     private static final String EXCHANGE_NAME = "direct_logs";
@@ -31,6 +32,6 @@ public class EmitLogDirect {
     }
 
     private static String getMessage(String[] arg) {
-        return arg.length < 2 ? "No message was provided" : arg[1];
+        return arg.length < 2 ? "No message was provided" : String.join(" ", Arrays.copyOfRange(arg, 1, arg.length));
     }
 }
